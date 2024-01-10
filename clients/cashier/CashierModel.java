@@ -167,7 +167,24 @@ public class CashierModel extends Observable
   {
     setChanged(); notifyObservers("Welcome");
   }
-  
+  public void doUndo(){
+    String theAction = "";
+    int amount = 1;
+    try
+    {
+      if (theBasket != null ) {
+        theBasket.clear();
+        theAction = "Order Cancelled: Next Customer";
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    setChanged();notifyObservers(theAction);
+
+
+  }
+
+
   /**
    * make a Basket when required
    */

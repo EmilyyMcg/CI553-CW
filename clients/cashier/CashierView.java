@@ -23,6 +23,8 @@ public class CashierView implements Observer
   private static final String CHECK  = "Check";
   private static final String BUY    = "Buy";
   private static final String BOUGHT = "Bought";
+  private static final String UNDO = "Cancel";
+
 
   private final JLabel      theAction  = new JLabel();
   private final JTextField  theInput   = new JTextField();
@@ -31,6 +33,8 @@ public class CashierView implements Observer
   private final JButton     theBtCheck = new JButton( CHECK );
   private final JButton     theBtBuy   = new JButton( BUY );
   private final JButton     theBtBought= new JButton( BOUGHT );
+
+  private final JButton     theBtUndo = new JButton(UNDO);
 
   private StockReadWriter theStock     = null;
   private OrderProcessing theOrder     = null;
@@ -55,6 +59,7 @@ public class CashierView implements Observer
       System.out.println("Exception: " + e.getMessage() );
     }
     Container cp         = rpc.getContentPane();    // Content Pane
+    cp.setBackground(Color.GRAY);
     Container rootWindow = (Container) rpc;         // Root Window
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
@@ -65,16 +70,22 @@ public class CashierView implements Observer
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check Button
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText() ) );
+    theBtCheck.setBackground(Color.black);
+    theBtCheck.setForeground(Color.white);
     cp.add( theBtCheck );                           //  Add to canvas
 
     theBtBuy.setBounds( 16, 25+60*1, 80, 40 );      // Buy button 
     theBtBuy.addActionListener(                     // Call back code
       e -> cont.doBuy() );
+    theBtBuy.setBackground(Color.black);
+    theBtBuy.setForeground(Color.white);
     cp.add( theBtBuy );                             //  Add to canvas
 
     theBtBought.setBounds( 16, 25+60*3, 80, 40 );   // Clear Button
     theBtBought.addActionListener(                  // Call back code
       e -> cont.doBought() );
+    theBtBought.setBackground(Color.black);
+    theBtBought.setForeground(Color.white);
     cp.add( theBtBought );                          //  Add to canvas
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
@@ -92,6 +103,14 @@ public class CashierView implements Observer
     theSP.getViewport().add( theOutput );           //  In TextArea
     rootWindow.setVisible( true );                  // Make visible
     theInput.requestFocus();                        // Focus is here
+
+    theBtUndo.setBounds( 16, 25+60*2, 80, 40 );   // Clear Button
+    theBtUndo.addActionListener(                  // Call back code
+            e -> cont.doUndo());
+    theOutput.setText("");;
+    theBtBought.setBackground(Color.black);
+    theBtBought.setForeground(Color.white);
+    cp.add( theBtUndo );
   }
 
   /**

@@ -46,4 +46,5 @@ public class CashierController
   {
     model.doBought();
   }
+  public void doUndo(){model.doUndo();}
 }

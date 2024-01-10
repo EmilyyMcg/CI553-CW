@@ -52,6 +52,7 @@ public class BackDoorView implements Observer
       System.out.println("Exception: " + e.getMessage() );
     }
     Container cp         = rpc.getContentPane();    // Content Pane
+    cp.setBackground(Color.GRAY);
     Container rootWindow = (Container) rpc;         // Root Window
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
@@ -62,17 +63,23 @@ public class BackDoorView implements Observer
     theBtQuery.setBounds( 16, 25+60*0, 80, 40 );    // Buy button 
     theBtQuery.addActionListener(                   // Call back code
       e -> cont.doQuery( theInput.getText() ) );
+    theBtQuery.setBackground(Color.black);
+    theBtQuery.setForeground(Color.white);
     cp.add( theBtQuery );                           //  Add to canvas
 
     theBtRStock.setBounds( 16, 25+60*1, 80, 40 );   // Check Button
     theBtRStock.addActionListener(                  // Call back code
       e -> cont.doRStock( theInput.getText(),
                           theInputNo.getText() ) );
+    theBtRStock.setBackground(Color.black);
+    theBtRStock.setForeground(Color.white);
     cp.add( theBtRStock );                          //  Add to canvas
 
     theBtClear.setBounds( 16, 25+60*2, 80, 40 );    // Buy button 
     theBtClear.addActionListener(                   // Call back code
       e -> cont.doClear() );
+    theBtClear.setBackground(Color.black);
+    theBtClear.setForeground(Color.white);
     cp.add( theBtClear );                           //  Add to canvas
 
  

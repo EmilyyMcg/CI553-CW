@@ -5,6 +5,8 @@ import middle.Names;
 import middle.RemoteMiddleFactory;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 
 /**
  * The standalone shop Display Client.
@@ -21,19 +23,31 @@ public class DisplayClient
      String orderURL = args.length < 2     // URL of order
                      ? Names.ORDER         //  default  location
                      : args[1];            //  supplied location
-     
+
+
     RemoteMiddleFactory mrf = new RemoteMiddleFactory();
     mrf.setStockRWInfo( stockURL );
     mrf.setOrderInfo  ( orderURL );        //
+
     displayGUI(mrf);                       // Create GUI
+
   }
   
   private static void displayGUI(MiddleFactory mf)
   {     
     JFrame  window = new JFrame();
+    JLabel label = new JLabel("Hello");
+    label.setFont(new Font("Calibri", Font.BOLD, 15));
+    label.setForeground(Color.BLUE);
+    Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+
+
 
     window.setTitle( "Pick Client MVC");
+    window.setBackground(Color.BLUE);
+    window.setFont(new Font("Calibri", Font.BOLD, 15));
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+    window.getContentPane().add(label);
     
     DisplayModel    model = new  DisplayModel(mf);
     DisplayView     view  = new  DisplayView( window, mf, 0, 0 );

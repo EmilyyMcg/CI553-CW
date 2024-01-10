@@ -2,6 +2,7 @@ package clients;
 import clients.backDoor.BackDoorController;
 import clients.backDoor.BackDoorModel;
 import clients.backDoor.BackDoorView;
+import clients.cashier.BetterCashierModel;//
 import clients.cashier.CashierController;
 import clients.cashier.CashierModel;
 import clients.cashier.CashierView;
@@ -19,9 +20,20 @@ import clients.warehousePick.PickModel;
 import clients.warehousePick.PickView;
 import middle.LocalMiddleFactory;
 import middle.MiddleFactory;
+import clients.playMusic;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import static clients.playMusic.Music;
 
 
 /**
@@ -62,6 +74,7 @@ class Main
     if ( many ) 
       startDisplayGUI_MVC( mlf );
     startCollectionGUI_MVC( mlf );
+    startPlayMusicGUI(mlf);
   }
   
   public void startCustomerGUI_MVC(MiddleFactory mlf )
@@ -78,6 +91,7 @@ class Main
 
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // start Screen
+
   }
 
   /**
@@ -91,7 +105,7 @@ class Main
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
     
-    CashierModel model      = new CashierModel(mlf);
+    CashierModel model      = new BetterCashierModel(mlf);
     CashierView view        = new CashierView( window, mlf, pos.width, pos.height );
     CashierController cont  = new CashierController( model, view );
     view.setController( cont );
@@ -134,6 +148,8 @@ class Main
 
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
+
+
   }
   
   public void startDisplayGUI_MVC(MiddleFactory mlf )
@@ -141,13 +157,15 @@ class Main
     JFrame  window = new JFrame();
 
     window.setTitle( "Display Client MVC");
+    window.setBackground(Color.BLUE);
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
-    
+
     DisplayModel model      = new DisplayModel(mlf);
     DisplayView view        = new DisplayView( window, mlf, pos.width, pos.height );
     DisplayController cont  = new DisplayController( model, view );
     view.setController( cont );
+    Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
 
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
@@ -159,6 +177,7 @@ class Main
     JFrame  window = new JFrame();
 
     window.setTitle( "Collect Client MVC");
+    window.setFont(new Font("Calibre", Font.BOLD, 15));
     window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     Dimension pos = PosOnScrn.getPos();
     
@@ -171,4 +190,42 @@ class Main
     window.setVisible(true);         // Make window visible
   }
 
+  public void startPlayMusicGUI(MiddleFactory mlf){
+    JFrame frame = new JFrame();
+    frame.setSize(200,200);
+    JButton button = new JButton("Play Music");
+    button.setForeground(Color.white);
+    button.setBackground(Color.BLACK);
+    frame.add(button);
+    frame.setVisible(true);
+    button.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Music("music.wav");
+      }
+    });
+  }
+  public static void Music(String filepath){
+    File music = new File(filepath);
+    try
+    {
+      AudioInputStream audio = AudioSystem.getAudioInputStream(music);
+      Clip clip = AudioSystem.getClip();
+      clip.open(audio);
+      clip.start();
+
+    }
+
+    catch(Exception e){
+      JOptionPane.showMessageDialog(null,"error");
+
+    }
+  }
+
+
 }
+
+
+  //playMusic("C:\Users\emily\IdeaProjects\CI553-CW\music.wav")
+
+
