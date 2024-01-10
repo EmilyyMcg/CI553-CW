@@ -5,6 +5,7 @@ import catalogue.Product;
 import debug.DEBUG;
 import middle.*;
 
+import java.util.Collection;
 import java.util.Observable;
 
 /**
@@ -157,6 +158,23 @@ public class CashierModel extends Observable
     }
     theBasket = null;
     setChanged(); notifyObservers(theAction); // Notify
+  }
+
+  public void doUndo(){
+    String theAction = "";
+    int amount = 1;
+    try
+    {
+      if (theBasket != null ) {
+      theBasket.clear();
+      theAction = "Order Cancelled: Next Customer";
+      }
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+    setChanged();notifyObservers(theAction);
+
+
   }
 
   /**

@@ -56,7 +56,9 @@ public class CustomerView implements Observer
     {
       System.out.println("Exception: " + e.getMessage() );
     }
+
     Container cp         = rpc.getContentPane();    // Content Pane
+    cp.setBackground(Color.GRAY);
     Container rootWindow = (Container) rpc;         // Root Window
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
@@ -67,16 +69,22 @@ public class CustomerView implements Observer
     theBtCheck.setBounds( 16, 25+60*0, 80, 40 );    // Check button
     theBtCheck.addActionListener(                   // Call back code
       e -> cont.doCheck( theInput.getText() ) );
-    cp.add( theBtCheck );                           //  Add to canvas
+    theBtCheck.setBackground(Color.black);
+    theBtCheck.setForeground(Color.white);
+    cp.add( theBtCheck );//  Add to canvas
 
     theBtClear.setBounds( 16, 25+60*1, 80, 40 );    // Clear button
     theBtClear.addActionListener(                   // Call back code
       e -> cont.doClear() );
     cp.add( theBtClear );                           //  Add to canvas
+    theBtClear.setBackground(Color.black);
+    theBtClear.setForeground(Color.white);
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
     theAction.setText( "" );                        //  Blank
     cp.add( theAction );                            //  Add to canvas
+    theAction.setBackground(Color.black);
+    theAction.setForeground(Color.gray);
 
     theInput.setBounds( 110, 50, 270, 40 );         // Product no area
     theInput.setText("");                           // Blank
@@ -87,9 +95,11 @@ public class CustomerView implements Observer
     theOutput.setFont( f );                         //  Uses font  
     cp.add( theSP );                                //  Add to canvas
     theSP.getViewport().add( theOutput );           //  In TextArea
+    theSP.setBackground(Color.black);
 
     thePicture.setBounds( 16, 25+60*2, 80, 80 );   // Picture area
     cp.add( thePicture );                           //  Add to canvas
+    theSP.setBackground(Color.black);
     thePicture.clear();
     
     rootWindow.setVisible( true );                  // Make visible);

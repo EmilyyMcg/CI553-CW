@@ -48,6 +48,7 @@ public class PickView implements Observer
       System.out.println("Exception: " + e.getMessage() );
     }
     Container cp         = rpc.getContentPane();    // Content Pane
+    cp.setBackground(Color.GRAY);
     Container rootWindow = (Container) rpc;         // Root Window
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
@@ -58,6 +59,8 @@ public class PickView implements Observer
     theBtPicked.setBounds( 16, 25+60*0, 80, 40 );   // Check Button
     theBtPicked.addActionListener(                   // Call back code
       e -> cont.doPick() );
+    theBtPicked.setForeground(Color.white);
+    theBtPicked.setBackground(Color.BLACK);
     cp.add( theBtPicked );                          //  Add to canvas
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
