@@ -108,8 +108,8 @@ public class CashierView implements Observer
     theBtUndo.addActionListener(                  // Call back code
             e -> cont.doUndo());
     theOutput.setText("");;
-    theBtBought.setBackground(Color.black);
-    theBtBought.setForeground(Color.white);
+    theBtUndo.setBackground(Color.black);
+    theBtUndo.setForeground(Color.white);
     cp.add( theBtUndo );
   }
 
