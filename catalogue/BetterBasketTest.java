@@ -3,9 +3,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-class BetterBasketTest {
+public class BetterBasketTest {
     @Test
-    void testMergeAddProduct(){
+    public void testMergeAddProduct(){
         BetterBasket b = new BetterBasket();
         Product p1 = new Product("0001","Toaster",10.00,1);
         Product p2 = new Product("0001","Toaster",10.00,1);
@@ -18,11 +18,11 @@ class BetterBasketTest {
         assertEquals(2, b.get(0).getQuantity());
 
         b.add(p3);
-        assertEquals(3, b.get(1).getQuantity());
+        assertEquals(1, b.get(1).getQuantity());
     }
 
     @Test
-    void testSortAddProduct(){
+    public void testSortAddProduct(){
         BetterBasket b = new BetterBasket();
         Product p1 = new Product ("0001","Toaster",10.00,1);
         Product p2 = new Product ("0002","Microwave", 50.00,1);

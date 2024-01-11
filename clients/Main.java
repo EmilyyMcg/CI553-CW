@@ -67,6 +67,7 @@ class Main
     startCashierGUI_MVC( mlf );
     startCashierGUI_MVC( mlf );
     startBackDoorGUI_MVC( mlf );
+
     if ( many ) 
       startPickGUI_MVC( mlf );
     startPickGUI_MVC( mlf );
@@ -205,25 +206,25 @@ class Main
       }
     });
   }
-  public static void Music(String filepath){
-    File music = new File(filepath);
-    try
-    {
-      AudioInputStream audio = AudioSystem.getAudioInputStream(music);
-      Clip clip = AudioSystem.getClip();
-      clip.open(audio);
-      clip.start();
+  //public static void Music(String filepath){
+   // File music = new File(filepath);
+   // try
+   // {
+   //   AudioInputStream audio = AudioSystem.getAudioInputStream(music);
+  //    Clip clip = AudioSystem.getClip();
+   //   clip.open(audio);
+    //  clip.start();
+   //   clip.loop(Clip.LOOP_CONTINUOUSLY);
 
     }
+   // catch(Exception e){
+    //  JOptionPane.showMessageDialog(null,"error");
 
-    catch(Exception e){
-      JOptionPane.showMessageDialog(null,"error");
-
-    }
-  }
+  ////  }
+  //}
 
 
-}
+//}
 
 
   //playMusic("C:\Users\emily\IdeaProjects\CI553-CW\music.wav")

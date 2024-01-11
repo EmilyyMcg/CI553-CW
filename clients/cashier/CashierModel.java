@@ -169,7 +169,6 @@ public class CashierModel extends Observable
   }
   public void doUndo(){
     String theAction = "";
-    int amount = 1;
     try
     {
       if (theBasket != null ) {
